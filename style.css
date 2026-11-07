@@ -889,3 +889,21 @@ body {
     background-size: 65px 65px;
     background-position: center top;
 }
+/* SHOW THE COMPLETE PCB IMAGE */
+
+.explore-image {
+    width: 100%;
+    height: auto;
+    overflow: visible;
+}
+
+.explore-image img {
+    width: 100%;
+    height: auto !important;
+    max-height: 650px;
+    object-fit: contain !important;
+    object-position: center;
+    display: block;
+    border-radius: 3px;
+    background: transparent;
+}
