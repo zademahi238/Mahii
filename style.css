@@ -1193,3 +1193,34 @@ p {
     }
 
 }
+
+/* =========================================
+   SCROLL REVEAL ANIMATIONS
+========================================= */
+
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease;
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* ACTIVE NAVIGATION */
+
+.nav-links a.active {
+    color: var(--accent);
+}
+
+
+/* IMAGE ERROR */
+
+.image-error {
+    opacity: 0.3;
+}
