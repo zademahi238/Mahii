@@ -1,421 +1,282 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Mahi — Personal Portfolio</title>
-
-    <meta name="description"
-        content="Hieeee, I'm Mahi! A second-year EXTC student exploring robotics, robot learning, tactile sensing, PCB design and electronics.">
-
+    <meta name="description" content="Mahi Zade — EXTC student exploring robotics, tactile sensing, robot learning and electronics.">
     <meta name="author" content="Mahi Zade">
 
-    <!-- GOOGLE FONTS -->
+    <title>Mahi Zade — Robotics & Electronics</title>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
-        rel="stylesheet">
-
-    <!-- STYLESHEET -->
     <link rel="stylesheet" href="style.css">
-
 </head>
 
 <body>
 
-    <!-- NAVIGATION -->
-    <header class="navbar container">
+    <div class="page-grid" aria-hidden="true"></div>
 
-        <a href="#home" class="logo">
-            mahi<span>.</span>
-        </a>
+    <header class="navbar">
+        <a href="#home" class="logo">MAHI<span>®</span></a>
 
-        <nav class="nav-links" aria-label="Main navigation">
-            <a href="#home">home</a>
-            <a href="#work">work</a>
-            <a href="#now">now</a>
-            <a href="#links">links</a>
+        <nav class="nav-links">
+            <a href="#work">Projects</a>
+            <a href="#exploring">Exploring</a>
+            <a href="#contact">Contact</a>
         </nav>
 
-        <button
-            id="theme-toggle"
-            class="theme-toggle"
-            type="button"
-            aria-label="Toggle dark and light theme">
-            ☼
+        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle colour theme">
+            <span class="theme-icon">◐</span>
         </button>
-
     </header>
 
     <main>
 
-        <!-- 01. INTRODUCTION -->
-        <section id="home" class="hero container">
+        <!-- HERO -->
+        <section id="home" class="hero section-wrap">
 
-            <div class="hero-content">
+            <div class="hero-topline">
+                <span>PORTFOLIO / 2026</span>
+                <span><i class="status-dot"></i> CURIOUS BY DEFAULT</span>
+            </div>
 
-                <!-- YOUR PHOTO -->
-                <div class="profile-container">
+            <div class="hero-layout">
 
-                    <img
-                        src="assets/images/website.jpg"
-                        alt="Mahi's photograph"
-                        class="profile-photo">
+                <div class="hero-copy">
+                    <p class="eyebrow">HELLO, I'M MAHI — AN EXTC STUDENT</p>
 
-                    <span class="photo-caption">
-                        a little hello from me ✳
-                    </span>
+                    <h1>
+                        I like making<br>
+                        things <span class="outlined">work.</span>
+                    </h1>
 
+                    <p class="hero-description">
+                        I'm a second-year EXTC student who loves building things,
+                        debugging them and figuring out how they work.
+                    </p>
+
+                    <p class="hero-description secondary">
+                        I'm usually exploring robotics, robot learning, tactile
+                        sensing, PCB design and electronics. I enjoy experimenting
+                        with ideas and bringing them to life. And if I'm not doing
+                        robotics, you'll probably find me trying out some completely
+                        random thing I've gotten curious about. There's always
+                        something new to explore hehe.
+                    </p>
+
+                    <a href="#work" class="text-link">
+                        EXPLORE MY WORK <span>↘</span>
+                    </a>
                 </div>
 
-                <p class="eyebrow">
-                    <span class="status-dot"></span>
-                    A LITTLE ABOUT ME
-                </p>
-
-                <h1>
-                    hieeee, i'm
-                    <span class="accent">Mahi!</span>
-                </h1>
-
-                <h3 class="intro-subtitle">
-                    a second-year EXTC student.
-                </h3>
-
-                <div class="hero-description">
-
-                    <p>
-                        I love building things, debugging them
-                        and figuring out how they work.
-                    </p>
-
-                    <p>
-                        I'm usually exploring something around
-                        robotics, robot learning, tactile sensing,
-                        PCB design and electronics. I enjoy
-                        experimenting with ideas and bringing
-                        them to life.
-                    </p>
-
-                    <p>
-                        And if I'm not doing robotics, you'll
-                        probably find me trying out some
-                        completely random thing I've gotten
-                        curious about. There's always something
-                        new to explore hehe.
-                    </p>
-
+                <div class="hero-visual">
+                    <div class="photo-frame">
+                        <img
+                            src="assets/images/website.jpg"
+                            alt="Portrait of Mahi"
+                            class="profile-photo">
+                        <span class="photo-index">FIG. 01 — MAHI</span>
+                    </div>
+                    <div class="hero-sticker">BUILD<br>THINGS.<br>BREAK<br>THINGS.</div>
+                    <span class="visual-cross cross-one">✳</span>
+                    <span class="visual-cross cross-two">+</span>
                 </div>
 
-                <p class="interests">
-                    ROBOTICS · ROBOT LEARNING · ELECTRONICS · CURIOSITY
-                </p>
+            </div>
 
-                <a href="#work" class="explore-link">
-                    a little more about what i do ↓
-                </a>
-
+            <div class="hero-bottomline">
+                <span>ROBOTICS · ELECTRONICS · EXPERIMENTS</span>
+                <a href="#work">SCROLL TO EXPLORE ↓</a>
             </div>
 
         </section>
 
-        <!-- MOVING TEXT STRIP -->
-        <div class="marquee">
 
-            <div class="marquee-track">
+        <!-- PROJECTS -->
+        <section id="work" class="projects section-wrap">
 
-                <span>
-                    ROBOTICS ✳ ELECTRONICS ✳ EXPERIMENTS ✳
-                    TACTILE SENSING ✳ CURIOSITY ✳
-                </span>
-
-                <span aria-hidden="true">
-                    ROBOTICS ✳ ELECTRONICS ✳ EXPERIMENTS ✳
-                    TACTILE SENSING ✳ CURIOSITY ✳
-                </span>
-
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">01 / SELECTED WORK</p>
+                    <h2>Things I've<br><span>been building.</span></h2>
+                </div>
+                <p class="heading-note">
+                    A closer look at one of the projects<br>
+                    I've been learning and experimenting with.
+                </p>
             </div>
 
-        </div>
+            <article class="project">
 
-        <!-- 02. PROJECTS -->
-        <section id="work" class="section container">
-
-            <p class="eyebrow">
-                01 / PROJECTS
-            </p>
-
-            <h2>
-                things i've worked on<span class="accent">.</span>
-            </h2>
-
-            <p class="section-description">
-                A little look into the things I've been
-                building, experimenting with and learning from.
-            </p>
-
-            <!-- MISSION MIMOSA -->
-            <article class="featured-project">
-
-                <div class="project-image-container">
-
-                    <img
-                        src="assets/images/mimosa.mp4"
-                        alt="Mission Mimosa project"
-                        class="project-image"
-                        loading="lazy">
-
+                <div class="project-media">
+                    <video
+                        class="project-video"
+                        autoplay
+                        muted
+                        loop
+                        playsinline
+                        controls
+                        preload="metadata">
+                        <source src="assets/images/mimosa.mp4" type="video/mp4">
+                        Your browser does not support this video.
+                    </video>
+                    <span class="media-label">PROJECT 01 / ROBOTICS</span>
                 </div>
 
-                <div class="project-content">
+                <div class="project-info">
 
-                    <p class="project-number">
-                        PROJECT 01
-                    </p>
-
-                    <h3>
-                        Mission Mimosa — A Sense of Touch
-                    </h3>
-
-                    <div class="project-description">
-
-                        <p>
-                            Exploring <strong>low-cost
-                            visuo-tactile manipulation</strong>
-                            with a robotic arm by combining
-                            visual observations with tactile feedback.
-                        </p>
-
-                        <p>
-                            The project brings together
-                            <strong>tactile sensing, robot learning
-                            and real-world manipulation</strong>,
-                            investigating how access to touch
-                            changes the way robots learn and
-                            interact with objects.
-                        </p>
-
-                        <p>
-                            Through experiments with vision-only
-                            and vision-tactile setups, I'm studying
-                            what a robot gains when it can actually
-                            sense contact.
-                        </p>
-
+                    <div class="project-title-row">
+                        <p class="eyebrow">MISSION MIMOSA</p>
+                        <span class="project-number">01 — 01</span>
                     </div>
 
-                    <div class="project-tags">
+                    <h3>Mission Mimosa<br><span>— A Sense of Touch</span></h3>
 
+                    <p>
+                        Exploring <strong>low-cost visuo-tactile manipulation</strong>
+                        with a robotic arm by combining visual observations with
+                        tactile feedback.
+                    </p>
+
+                    <p>
+                        The project brings together <strong>tactile sensing,
+                        robot learning and real-world manipulation</strong>,
+                        investigating how access to touch changes the way robots
+                        learn and interact with objects.
+                    </p>
+
+                    <p>
+                        Through experiments with vision-only and vision-tactile
+                        setups, I'm studying what a robot gains when it can
+                        actually sense contact.
+                    </p>
+
+                    <div class="tags">
                         <span>ROBOTICS</span>
                         <span>TACTILE SENSING</span>
                         <span>ROBOT LEARNING</span>
                         <span>MANIPULATION</span>
-
                     </div>
 
-                    <!-- MISSION MIMOSA WEBSITE LINK -->
                     <a
                         href="https://zademahi238.github.io/mission-mimosa/#/"
-                        class="explore-link"
+                        class="project-button"
                         target="_blank"
                         rel="noopener noreferrer">
-                        visit project website ↗
+                        EXPLORE THE PROJECT <span>↗</span>
                     </a>
 
                 </div>
-
             </article>
 
         </section>
 
-        <!-- 03. CURRENTLY EXPLORING -->
-        <section id="now" class="section container">
 
-            <p class="eyebrow">
-                02 / CURRENTLY EXPLORING
-            </p>
+        <!-- CURRENTLY EXPLORING -->
+        <section id="exploring" class="exploring section-wrap">
 
-            <h2>
-                what i'm exploring<span class="accent">.</span>
-            </h2>
-
-            <p class="section-description">
-                Things I'm currently curious about,
-                experimenting with and learning along the way.
-            </p>
-
-            <!-- ONE PCB IMAGE ONLY -->
-            <div class="exploration-image-container">
-
-                <img
-                    src="assets/images/bimanual.jpg"
-                    alt="FlexiTac bimanual PCB and electronics work"
-                    class="exploration-image"
-                    loading="lazy">
-
+            <div class="section-heading">
+                <div>
+                    <p class="eyebrow">02 / ON THE WORKBENCH</p>
+                    <h2>Making robots<br><span>feel things.</span></h2>
+                </div>
+                <p class="heading-note">
+                    Currently exploring the intersection<br>
+                    of tactile sensing and hardware.
+                </p>
             </div>
 
-            <!-- BOTH EXPLORATION TOPICS -->
-            <div class="exploration-content">
+            <div class="explore-layout">
 
-                <!-- BIMANUAL FLEXITAC -->
-                <article class="exploration-item">
+                <div class="explore-image">
+                    <img
+                        src="assets/images/bimanual.jpg"
+                        alt="PCB and FlexiTac hardware work"
+                        loading="lazy">
+                    <span class="image-caption">HARDWARE / EXPERIMENTS / ITERATIONS</span>
+                </div>
 
-                    <p class="project-number">
-                        CURRENT EXPLORATION 01
-                    </p>
+                <div class="explore-copy">
+                    <p class="eyebrow">CURRENTLY EXPLORING</p>
 
                     <h3>
-                        Bimanual Manipulation with FlexiTac
+                        From tactile sensors<br>
+                        to <span>real-world interaction.</span>
                     </h3>
 
-                    <div class="project-description">
+                    <p>
+                        Exploring bimanual robotic manipulation with FlexiTac,
+                        focusing on how tactile feedback can help robots sense
+                        contact and coordinate interactions using both arms.
+                        I'm interested in bringing tactile sensing and robot
+                        learning together to make manipulation more capable.
+                    </p>
 
-                        <p>
-                            Exploring bimanual robotic manipulation
-                            with FlexiTac, focusing on how tactile
-                            feedback can help robots sense contact
-                            and coordinate interactions using both arms.
-                        </p>
+                    <p>
+                        Alongside this, I'm designing PCBs and experimenting
+                        with electronics for hardware projects — working through
+                        circuit designs, component choices, board routing and
+                        debugging until things work as intended.
+                    </p>
 
-                        <p>
-                            Interested in bringing tactile sensing
-                            and robot learning together for more
-                            capable manipulation.
-                        </p>
-
-                    </div>
-
-                    <div class="project-tags">
-
+                    <div class="tags">
                         <span>BIMANUAL MANIPULATION</span>
-                        <span>TACTILE FEEDBACK</span>
-                        <span>ROBOT LEARNING</span>
-
-                    </div>
-
-                </article>
-
-                <!-- PCB DESIGN AND ELECTRONICS -->
-                <article class="exploration-item">
-
-                    <p class="project-number">
-                        CURRENT EXPLORATION 02
-                    </p>
-
-                    <h3>
-                        PCB Design & Electronics
-                    </h3>
-
-                    <div class="project-description">
-
-                        <p>
-                            Designing PCBs and experimenting with
-                            electronics for my hardware projects.
-                            I enjoy working through circuit designs,
-                            figuring out component choices, routing
-                            boards and debugging things until they
-                            work as intended.
-                        </p>
-
-                    </div>
-
-                    <div class="project-tags">
-
+                        <span>FLEXITAC</span>
                         <span>PCB DESIGN</span>
-                        <span>CIRCUIT DESIGN</span>
                         <span>ELECTRONICS</span>
-                        <span>HARDWARE</span>
-
                     </div>
 
-                </article>
+                    <div class="explore-note">
+                        <span class="note-symbol">✳</span>
+                        <span>Always learning. Always testing. Always curious.</span>
+                    </div>
+                </div>
 
             </div>
-
         </section>
 
-        <!-- 04. CONTACTS -->
-        <section id="links" class="section container">
 
-            <p class="eyebrow">
-                03 / CONTACT
-            </p>
+        <!-- CONTACT -->
+        <section id="contact" class="contact section-wrap">
 
-            <h2>
-                find me elsewhere<span class="accent">.</span>
-            </h2>
+            <p class="eyebrow">03 / GET IN TOUCH</p>
 
-            <p class="section-description">
-                The other little corners of the internet
-                where you can find me.
-            </p>
+            <div class="contact-heading">
+                <h2>Have something<br>in <span>mind?</span></h2>
+                <p>
+                    Want to collaborate, talk robotics, exchange ideas,
+                    or just say hello? I'd love to hear from you.
+                </p>
+            </div>
+
+            <a href="mailto:zademahi238@gmail.com" class="contact-cta">
+                LET'S TALK <span>↗</span>
+            </a>
 
             <div class="social-links">
 
-                <!-- GITHUB -->
-                <a
-                    href="https://github.com/zademahi238"
-                    target="_blank"
-                    rel="noopener noreferrer">
-
-                    <span class="social-name">GitHub</span>
-
-                    <span class="social-handle">
-                        zademahi238
-                    </span>
-
-                    <span class="social-arrow">↗</span>
-
-                </a>
-
-                <!-- EMAIL -->
                 <a href="mailto:zademahi238@gmail.com">
-
-                    <span class="social-name">Email</span>
-
-                    <span class="social-handle">
-                        zademahi238@gmail.com
-                    </span>
-
-                    <span class="social-arrow">↗</span>
-
+                    <span>Email</span>
+                    <span>zademahi238@gmail.com ↗</span>
                 </a>
 
-                <!-- LINKEDIN -->
-                <a
-                    href="YOUR-LINKEDIN-PROFILE-URL"
-                    target="_blank"
-                    rel="noopener noreferrer">
-
-                    <span class="social-name">LinkedIn</span>
-
-                    <span class="social-handle">
-                        Mahi Zade
-                    </span>
-
-                    <span class="social-arrow">↗</span>
-
+                <a href="https://github.com/zademahi238" target="_blank" rel="noopener noreferrer">
+                    <span>GitHub</span>
+                    <span>zademahi238 ↗</span>
                 </a>
 
-                <!-- TWITTER / X -->
-                <a
-                    href="https://x.com/mahi_zade0712?s=11"
-                    target="_blank"
-                    rel="noopener noreferrer">
+                <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">
+                    <span>LinkedIn</span>
+                    <span>Mahi Zade ↗</span>
+                </a>
 
-                    <span class="social-name">Twitter / X</span>
-
-                    <span class="social-handle">
-                        @mahi_zade0712
-                    </span>
-
-                    <span class="social-arrow">↗</span>
-
+                <a href="https://x.com/mahi_zade0712?s=11" target="_blank" rel="noopener noreferrer">
+                    <span>X / Twitter</span>
+                    <span>@mahi_zade0712 ↗</span>
                 </a>
 
             </div>
@@ -424,27 +285,14 @@
 
     </main>
 
-    <!-- FOOTER -->
-    <footer class="footer container">
 
-        <p>
-            made with curiosity
-            <span class="accent">✳</span>
-        </p>
-
-        <p>
-            © 2026 · mahi's little corner of the internet.
-        </p>
-
-        <a href="#home" class="back-to-top">
-            back to top ↑
-        </a>
-
+    <footer class="footer">
+        <a href="#home" class="logo">MAHI<span>®</span></a>
+        <span>DESIGNED WITH CURIOSITY · <span id="year"></span></span>
+        <a href="#home">BACK TO TOP ↑</a>
     </footer>
 
-    <!-- JAVASCRIPT -->
-    <script src="script.js"></script>
+    <script src="scripts.js"></script>
 
 </body>
-
 </html>
