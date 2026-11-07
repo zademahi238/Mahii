@@ -872,3 +872,20 @@ body::after {
     opacity: 1 !important;
     visibility: visible !important;
 }
+/* RESTORE THE SUBTLE SAGE GRID */
+
+body {
+    background-image:
+        linear-gradient(
+            rgba(182, 193, 154, 0.055) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(182, 193, 154, 0.055) 1px,
+            transparent 1px
+        ) !important;
+
+    background-size: 65px 65px;
+    background-position: center top;
+}
