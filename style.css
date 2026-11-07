@@ -857,3 +857,18 @@ body::after {
     box-shadow: none;
     transform: none;
 }
+.explore-image {
+    display: block !important;
+    width: 100%;
+    min-width: 0;
+    overflow: visible;
+}
+
+.explore-image img {
+    display: block !important;
+    width: 100% !important;
+    height: 440px;
+    object-fit: cover;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
