@@ -1,0 +1,1195 @@
+
+/* =========================================
+   MAHI — PERSONAL PORTFOLIO
+   Theme: Dark Editorial × Playful
+========================================= */
+
+
+/* GOOGLE FONTS ARE IMPORTED IN HTML */
+
+
+/* =========================================
+   01. DESIGN SYSTEM
+========================================= */
+
+:root {
+
+    /* DARK THEME */
+
+    --bg: #111210;
+    --surface: #1b1c19;
+    --surface-hover: #242620;
+
+    --text: #eae9e2;
+    --text-muted: #a09f95;
+
+    --accent: #b6c19a;
+    --accent-soft: rgba(182, 193, 154, 0.12);
+
+    --border: #30312b;
+
+    --shadow: rgba(0, 0, 0, 0.2);
+
+    --font-heading: 'Space Grotesk', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
+    --font-mono: 'DM Mono', monospace;
+
+    --page-width: 1100px;
+    --page-padding: 7%;
+
+    --transition: 0.3s ease;
+}
+
+
+/* LIGHT THEME */
+
+body.light-theme {
+
+    --bg: #f5f3eb;
+    --surface: #ebe9df;
+    --surface-hover: #e2e0d5;
+
+    --text: #25271f;
+    --text-muted: #696b60;
+
+    --accent: #71845c;
+    --accent-soft: rgba(113, 132, 92, 0.12);
+
+    --border: #d8d6ca;
+
+    --shadow: rgba(0, 0, 0, 0.07);
+
+}
+
+
+/* =========================================
+   02. RESET
+========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+body {
+
+    background: var(--bg);
+    color: var(--text);
+
+    font-family: var(--font-body);
+
+    font-size: 16px;
+    line-height: 1.7;
+
+    overflow-x: hidden;
+
+    -webkit-font-smoothing: antialiased;
+
+    transition:
+        background var(--transition),
+        color var(--transition);
+
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+button {
+    font: inherit;
+}
+
+
+/* =========================================
+   03. SUBTLE MOVING BACKGROUND
+========================================= */
+
+body::before {
+
+    content: "";
+
+    position: fixed;
+
+    top: -250px;
+    right: -200px;
+
+    width: 550px;
+    height: 550px;
+
+    background: radial-gradient(
+        circle,
+        var(--accent-soft),
+        transparent 70%
+    );
+
+    filter: blur(65px);
+
+    pointer-events: none;
+
+    z-index: -1;
+
+    animation: ambientFloat 12s ease-in-out infinite alternate;
+
+}
+
+@keyframes ambientFloat {
+
+    from {
+        transform: translate(0, 0);
+    }
+
+    to {
+        transform: translate(-100px, 120px);
+    }
+
+}
+
+
+/* =========================================
+   04. GENERAL LAYOUT
+========================================= */
+
+.container {
+
+    width: min(
+        calc(100% - 2 * var(--page-padding)),
+        var(--page-width)
+    );
+
+    margin-inline: auto;
+
+}
+
+.section {
+
+    padding-block: 115px;
+
+    border-bottom: 1px solid var(--border);
+
+}
+
+.hero {
+
+    min-height: 680px;
+
+    display: flex;
+    align-items: center;
+
+    padding-top: 100px;
+    padding-bottom: 100px;
+
+}
+
+
+/* =========================================
+   05. NAVIGATION
+========================================= */
+
+.navbar {
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding-top: 22px;
+    padding-bottom: 22px;
+
+    background: color-mix(in srgb, var(--bg) 90%, transparent);
+
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+
+    border-bottom: 1px solid var(--border);
+
+}
+
+.logo {
+
+    font-family: var(--font-heading);
+
+    font-size: 1.65rem;
+
+    font-weight: 700;
+
+    letter-spacing: -0.07em;
+
+}
+
+.logo span,
+.accent {
+
+    color: var(--accent);
+
+}
+
+.nav-links {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 35px;
+
+}
+
+.nav-links a {
+
+    font-family: var(--font-mono);
+
+    font-size: 0.75rem;
+
+    color: var(--text-muted);
+
+    transition: color var(--transition);
+
+}
+
+.nav-links a:hover {
+
+    color: var(--accent);
+
+}
+
+
+/* THEME BUTTON */
+
+.theme-toggle {
+
+    width: 40px;
+    height: 40px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 50%;
+
+    background: var(--surface);
+
+    color: var(--accent);
+
+    font-size: 1.2rem;
+
+    cursor: pointer;
+
+    transition:
+        transform var(--transition),
+        background var(--transition);
+
+}
+
+.theme-toggle:hover {
+
+    transform: rotate(25deg);
+
+    background: var(--surface-hover);
+
+}
+
+
+/* =========================================
+   06. TYPOGRAPHY
+========================================= */
+
+h1,
+h2,
+h3 {
+
+    font-family: var(--font-heading);
+
+    font-weight: 500;
+
+    line-height: 1.15;
+
+    letter-spacing: -0.045em;
+
+}
+
+h1 {
+
+    font-size: clamp(3rem, 7vw, 5.8rem);
+
+    margin-bottom: 12px;
+
+}
+
+h2 {
+
+    font-size: clamp(2.3rem, 5vw, 3.8rem);
+
+    margin-top: 18px;
+
+    margin-bottom: 20px;
+
+}
+
+h3 {
+
+    font-size: clamp(1.45rem, 3vw, 2rem);
+
+    margin-bottom: 18px;
+
+}
+
+p {
+
+    color: var(--text-muted);
+
+}
+
+
+/* SMALL SECTION LABELS */
+
+.eyebrow {
+
+    font-family: var(--font-mono);
+
+    font-size: 0.73rem;
+
+    letter-spacing: 0.12em;
+
+    color: var(--accent);
+
+    text-transform: uppercase;
+
+}
+
+
+/* =========================================
+   07. INTRODUCTION
+========================================= */
+
+.hero-content {
+
+    width: 100%;
+
+    max-width: 850px;
+
+    animation: fadeUp 1s ease both;
+
+}
+
+
+/* PROFILE PHOTO */
+
+.profile-container {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 16px;
+
+    margin-bottom: 35px;
+
+}
+
+.profile-photo {
+
+    width: 112px;
+    height: 112px;
+
+    object-fit: cover;
+
+    border-radius: 24px;
+
+    border: 1px solid var(--accent);
+
+    transition:
+        transform 0.5s ease,
+        box-shadow 0.5s ease;
+
+}
+
+.profile-photo:hover {
+
+    transform: rotate(-4deg) scale(1.05);
+
+    box-shadow: 0 12px 35px var(--shadow);
+
+}
+
+.photo-caption {
+
+    font-family: var(--font-mono);
+
+    font-size: 0.7rem;
+
+    color: var(--text-muted);
+
+}
+
+
+/* INTRO HEADING */
+
+.intro-subtitle {
+
+    font-size: clamp(1.2rem, 2.5vw, 1.65rem);
+
+    color: var(--text-muted);
+
+    font-weight: 400;
+
+    margin-bottom: 30px;
+
+}
+
+.hero-description {
+
+    max-width: 720px;
+
+}
+
+.hero-description p {
+
+    font-size: 1.05rem;
+
+    line-height: 1.9;
+
+    margin-bottom: 17px;
+
+    color: var(--text-muted);
+
+}
+
+.interests {
+
+    margin-top: 32px;
+
+    font-family: var(--font-mono);
+
+    font-size: 0.7rem;
+
+    letter-spacing: 0.08em;
+
+    color: var(--accent);
+
+}
+
+.status-dot {
+
+    display: inline-block;
+
+    width: 8px;
+    height: 8px;
+
+    background: var(--accent);
+
+    border-radius: 50%;
+
+    margin-right: 7px;
+
+    animation: pulse 2s infinite;
+
+}
+
+@keyframes pulse {
+
+    0%, 100% {
+        opacity: 1;
+        box-shadow: 0 0 0 0 var(--accent-soft);
+    }
+
+    50% {
+        opacity: 0.65;
+        box-shadow: 0 0 0 7px transparent;
+    }
+
+}
+
+.explore-link {
+
+    display: inline-block;
+
+    margin-top: 32px;
+
+    font-family: var(--font-mono);
+
+    font-size: 0.78rem;
+
+    color: var(--text);
+
+    transition:
+        color var(--transition),
+        transform var(--transition);
+
+}
+
+.explore-link:hover {
+
+    color: var(--accent);
+
+    transform: translateX(6px);
+
+}
+
+
+/* =========================================
+   08. MOVING TEXT STRIP
+========================================= */
+
+.marquee {
+
+    overflow: hidden;
+
+    padding-block: 24px;
+
+    background: var(--surface);
+
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+
+}
+
+.marquee-track {
+
+    display: flex;
+
+    width: max-content;
+
+    animation: marqueeMove 30s linear infinite;
+
+}
+
+.marquee-track span {
+
+    flex-shrink: 0;
+
+    white-space: nowrap;
+
+    padding-right: 35px;
+
+    font-family: var(--font-mono);
+
+    font-size: 0.8rem;
+
+    letter-spacing: 0.1em;
+
+    color: var(--accent);
+
+}
+
+@keyframes marqueeMove {
+
+    from {
+        transform: translateX(0);
+    }
+
+    to {
+        transform: translateX(-50%);
+    }
+
+}
+
+.marquee:hover .marquee-track {
+
+    animation-play-state: paused;
+
+}
+
+
+/* =========================================
+   09. SECTION INTRODUCTIONS
+========================================= */
+
+.section-description {
+
+    max-width: 600px;
+
+    font-size: 1rem;
+
+    margin-bottom: 55px;
+
+    line-height: 1.8;
+
+}
+
+
+/* =========================================
+   10. PROJECTS — MISSION MIMOSA
+========================================= */
+
+.featured-project {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1.1fr;
+
+    gap: 45px;
+
+    align-items: center;
+
+    padding: 30px;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    border-radius: 20px;
+
+    transition:
+        transform var(--transition),
+        border-color var(--transition),
+        box-shadow var(--transition);
+
+}
+
+.featured-project:hover {
+
+    transform: translateY(-5px);
+
+    border-color: var(--accent);
+
+    box-shadow: 0 18px 45px var(--shadow);
+
+}
+
+.project-image-container {
+
+    overflow: hidden;
+
+    border-radius: 14px;
+
+    background: var(--surface-hover);
+
+    aspect-ratio: 4 / 3;
+
+}
+
+.project-image {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: transform 0.6s ease;
+
+}
+
+.featured-project:hover .project-image {
+
+    transform: scale(1.045);
+
+}
+
+.project-number {
+
+    font-family: var(--font-mono);
+
+    font-size: 0.7rem;
+
+    letter-spacing: 0.1em;
+
+    color: var(--accent);
+
+    margin-bottom: 14px;
+
+}
+
+.project-content h3 {
+
+    margin-bottom: 22px;
+
+}
+
+.project-description p {
+
+    font-size: 0.95rem;
+
+    line-height: 1.85;
+
+    margin-bottom: 16px;
+
+}
+
+.project-description strong {
+
+    color: var(--text);
+
+    font-weight: 600;
+
+}
+
+.project-tags {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 9px;
+
+    margin-top: 24px;
+
+}
+
+.project-tags span {
+
+    padding: 6px 11px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 50px;
+
+    font-family: var(--font-mono);
+
+    font-size: 0.62rem;
+
+    letter-spacing: 0.04em;
+
+    color: var(--accent);
+
+    background: var(--accent-soft);
+
+}
+
+
+/* =========================================
+   11. CURRENTLY EXPLORING
+========================================= */
+
+/* ONE SHARED PCB IMAGE */
+
+.exploration-image-container {
+
+    width: 100%;
+
+    aspect-ratio: 16 / 7;
+
+    overflow: hidden;
+
+    border-radius: 20px;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    margin-bottom: 40px;
+
+}
+
+.exploration-image {
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition: transform 0.7s ease;
+
+}
+
+.exploration-image-container:hover .exploration-image {
+
+    transform: scale(1.035);
+
+}
+
+
+/* BOTH EXPLORATION TOPICS */
+
+.exploration-content {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 40px;
+
+}
+
+.exploration-item {
+
+    padding: 28px;
+
+    background: var(--surface);
+
+    border: 1px solid var(--border);
+
+    border-radius: 18px;
+
+    transition:
+        transform var(--transition),
+        border-color var(--transition);
+
+}
+
+.exploration-item:hover {
+
+    transform: translateY(-5px);
+
+    border-color: var(--accent);
+
+}
+
+.exploration-item h3 {
+
+    font-size: 1.5rem;
+
+    margin-bottom: 20px;
+
+}
+
+.exploration-item .project-description p {
+
+    line-height: 1.85;
+
+}
+
+
+/* =========================================
+   12. CONTACTS
+========================================= */
+
+.social-links {
+
+    border-top: 1px solid var(--border);
+
+}
+
+.social-links a {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1.5fr auto;
+
+    align-items: center;
+
+    gap: 20px;
+
+    padding: 24px 10px;
+
+    border-bottom: 1px solid var(--border);
+
+    transition:
+        padding var(--transition),
+        background var(--transition);
+
+}
+
+.social-links a:hover {
+
+    padding-left: 20px;
+    padding-right: 20px;
+
+    background: var(--accent-soft);
+
+}
+
+.social-name {
+
+    font-family: var(--font-heading);
+
+    font-size: 1.2rem;
+
+    color: var(--text);
+
+}
+
+.social-handle {
+
+    font-family: var(--font-mono);
+
+    font-size: 0.78rem;
+
+    color: var(--text-muted);
+
+}
+
+.social-arrow {
+
+    font-size: 1.3rem;
+
+    color: var(--accent);
+
+    transition: transform var(--transition);
+
+}
+
+.social-links a:hover .social-arrow {
+
+    transform: translate(4px, -4px);
+
+}
+
+
+/* =========================================
+   13. FOOTER
+========================================= */
+
+.footer {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding-top: 35px;
+    padding-bottom: 35px;
+
+}
+
+.footer p {
+
+    font-family: var(--font-mono);
+
+    font-size: 0.68rem;
+
+}
+
+.back-to-top {
+
+    font-family: var(--font-mono);
+
+    font-size: 0.7rem;
+
+    color: var(--text-muted);
+
+    transition: color var(--transition);
+
+}
+
+.back-to-top:hover {
+
+    color: var(--accent);
+
+}
+
+
+/* =========================================
+   14. GENERAL ANIMATIONS
+========================================= */
+
+@keyframes fadeUp {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(25px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+
+/* =========================================
+   15. RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 850px) {
+
+    :root {
+        --page-padding: 5%;
+    }
+
+    .featured-project {
+
+        grid-template-columns: 1fr;
+
+        gap: 28px;
+
+    }
+
+    .exploration-content {
+
+        grid-template-columns: 1fr;
+
+        gap: 22px;
+
+    }
+
+    .hero {
+
+        min-height: auto;
+
+        padding-block: 100px;
+
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    :root {
+        --page-padding: 6%;
+    }
+
+    .navbar {
+
+        flex-wrap: wrap;
+
+        gap: 14px;
+
+    }
+
+    .nav-links {
+
+        gap: 17px;
+
+        order: 3;
+
+        width: 100%;
+
+        justify-content: center;
+
+    }
+
+    .nav-links a {
+
+        font-size: 0.68rem;
+
+    }
+
+    .hero {
+
+        padding-block: 75px;
+
+    }
+
+    h1 {
+
+        font-size: clamp(2.8rem, 12vw, 4rem);
+
+    }
+
+    h2 {
+
+        font-size: 2.4rem;
+
+    }
+
+    .profile-photo {
+
+        width: 92px;
+        height: 92px;
+
+        border-radius: 19px;
+
+    }
+
+    .hero-description p {
+
+        font-size: 0.95rem;
+
+    }
+
+    .section {
+
+        padding-block: 80px;
+
+    }
+
+    .featured-project {
+
+        padding: 17px;
+
+        border-radius: 16px;
+
+    }
+
+    .exploration-image-container {
+
+        aspect-ratio: 4 / 3;
+
+    }
+
+    .exploration-item {
+
+        padding: 22px;
+
+    }
+
+    .social-links a {
+
+        grid-template-columns: 1fr auto;
+
+        gap: 5px;
+
+    }
+
+    .social-handle {
+
+        grid-column: 1;
+
+        grid-row: 2;
+
+        font-size: 0.7rem;
+
+    }
+
+    .social-arrow {
+
+        grid-column: 2;
+
+        grid-row: 1 / 3;
+
+    }
+
+    .footer {
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+    }
+
+}
+
+
+/* =========================================
+   16. ACCESSIBILITY
+========================================= */
+
+:focus-visible {
+
+    outline: 2px solid var(--accent);
+
+    outline-offset: 5px;
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        scroll-behavior: auto !important;
+
+        animation-duration: 0.01ms !important;
+
+        animation-iteration-count: 1 !important;
+
+        transition-duration: 0.01ms !important;
+
+    }
+
+}
