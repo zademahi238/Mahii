@@ -3,34 +3,42 @@
 // MAHI PORTFOLIO INTERACTIONS
 // =====================================
 
-// THEME TOGGLE
 const themeToggle = document.getElementById("theme-toggle");
 const themeIcon = document.querySelector(".theme-icon");
 
+// DARK MODE IS DEFAULT
 const savedTheme = localStorage.getItem("portfolio-theme");
 
-if (savedTheme === "dark") {
-    document.body.classList.add("dark-theme");
-    if (themeIcon) themeIcon.textContent = "☀";
+if (savedTheme === "light") {
+    document.body.classList.add("light-theme");
 }
 
-themeToggle?.addEventListener("click", () => {
-    document.body.classList.toggle("dark-theme");
+// Update toggle icon
+function updateThemeIcon() {
+    const isLight = document.body.classList.contains("light-theme");
 
-    const isDark = document.body.classList.contains("dark-theme");
+    if (themeIcon) {
+        themeIcon.textContent = isLight ? "☾" : "☀";
+    }
+}
+
+updateThemeIcon();
+
+// THEME TOGGLE
+themeToggle?.addEventListener("click", () => {
+    document.body.classList.toggle("light-theme");
+
+    const isLight = document.body.classList.contains("light-theme");
 
     localStorage.setItem(
         "portfolio-theme",
-        isDark ? "dark" : "light"
+        isLight ? "light" : "dark"
     );
 
-    if (themeIcon) {
-        themeIcon.textContent = isDark ? "☀" : "◐";
-    }
+    updateThemeIcon();
 });
 
-
-// SCROLL REVEAL ANIMATIONS
+// SCROLL REVEAL
 const revealElements = document.querySelectorAll(
     ".project, .section-heading, .explore-layout, .contact-heading, .social-links"
 );
@@ -39,64 +47,46 @@ revealElements.forEach(element => {
     element.classList.add("reveal");
 });
 
-const observer = new IntersectionObserver(
-    (entries, observerInstance) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("visible");
-                observerInstance.unobserve(entry.target);
-            }
-        });
-    },
-    {
-        threshold: 0.12
-    }
-);
+const observer = new IntersectionObserver((entries, observerInstance) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observerInstance.unobserve(entry.target);
+        }
+    });
+}, {
+    threshold: 0.12
+});
 
 revealElements.forEach(element => observer.observe(element));
 
-
-// ACTIVE NAVIGATION LINK
+// ACTIVE NAVIGATION
 const sections = document.querySelectorAll(
-    "#work, #exploring, #contact"
+    "#home, #work, #exploring, #contact"
 );
 
 const navLinks = document.querySelectorAll(".nav-links a");
 
-const navObserver = new IntersectionObserver(
-    entries => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                navLinks.forEach(link => {
-                    link.classList.toggle(
-                        "active",
-                        link.getAttribute("href") === `#${entry.target.id}`
-                    );
-                });
-            }
-        });
-    },
-    {
-        rootMargin: "-35% 0px -55% 0px"
-    }
-);
+const navObserver = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            navLinks.forEach(link => {
+                link.classList.toggle(
+                    "active",
+                    link.getAttribute("href") === `#${entry.target.id}`
+                );
+            });
+        }
+    });
+}, {
+    rootMargin: "-35% 0px -55% 0px"
+});
 
 sections.forEach(section => navObserver.observe(section));
-
-
-// FOOTER YEAR
-const yearElement = document.getElementById("year");
-
-if (yearElement) {
-    yearElement.textContent = new Date().getFullYear();
-}
-
 
 // IMAGE ERROR CHECK
 document.querySelectorAll("img").forEach(image => {
     image.addEventListener("error", () => {
         console.error("Image could not be loaded:", image.src);
-        image.classList.add("image-error");
-        image.alt = "Image unavailable — check the image filename and path.";
     });
 });
