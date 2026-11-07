@@ -811,3 +811,49 @@ button {
         animation-duration: .01ms !important;
     }
 }
+/* CLEAN, MINIMAL LAYOUT */
+
+/* Remove decorative labels and captions */
+.hero-topline,
+.hero-bottomline,
+.eyebrow,
+.photo-index,
+.image-caption,
+.media-label,
+.project-number,
+.explore-note,
+.heading-note {
+    display: none !important;
+}
+
+/* Remove decorative grid backgrounds */
+body,
+body::before,
+body::after {
+    background-image: none !important;
+}
+
+/* Keep sections spacious and balanced */
+.hero {
+    padding-top: 65px;
+}
+
+.hero-layout {
+    padding-top: 55px;
+}
+
+.projects {
+    padding-top: 100px;
+}
+
+.exploring {
+    padding-top: 100px;
+}
+
+/* Keep the layout clean */
+.photo-frame,
+.explore-image {
+    border: none;
+    box-shadow: none;
+    transform: none;
+}
