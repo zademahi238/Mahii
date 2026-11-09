@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +15,6 @@
 
     <link rel="stylesheet" href="style.css">
 
-    <!-- Ensure the complete PCB image is visible -->
     <style>
         .explore-image {
             width: 100%;
@@ -71,7 +69,7 @@
                 <p class="eyebrow">A LITTLE ABOUT ME</p>
 
                 <h1 class="hello-heading">Hiee!</h1>
-                
+
                 <h2 class="intro-name">
                     I'm Mahi, a second-year EXTC student.
                 </h2>
@@ -187,9 +185,9 @@
                 </p>
 
                 <p>
-                    Through experiments with vision-only and
-                    vision-tactile setups, I'm studying what a robot
-                    gains when it can actually sense contact.
+                    Comparing vision-only and vision-tactile setups
+                    highlights how touch can improve a robot's understanding
+                    of contact and interaction with objects.
                 </p>
 
                 <div class="tags">
@@ -212,6 +210,104 @@
             </div>
         </article>
 
+
+        <!-- FLEXITAC GRID -->
+        <section class="flexitac-demo" aria-labelledby="flexitac-title">
+
+            <div class="flexitac-heading">
+                <p class="eyebrow">INTERACTIVE HARDWARE</p>
+                <h3 id="flexitac-title">FlexiTac <span>Grid.</span></h3>
+            </div>
+
+            <div class="flexitac-stage">
+
+                <div class="flexitac-stage-top">
+                    <span>FLEXITAC / SENSOR ASSEMBLY</span>
+
+                    <span class="sensor-status" id="sensor-status">
+                        <i></i>
+                        <b id="sensor-status-text">NO CONTACT</b>
+                    </span>
+                </div>
+
+                <div class="flexitac-pair">
+
+                    <!-- SENSOR SURFACE -->
+                    <div class="sensor-view">
+
+                        <div class="view-heading">
+                            <span>01 / SENSOR SURFACE</span>
+                            <span>160 × 160 mm</span>
+                        </div>
+
+                        <div class="sensor-object-wrap">
+
+                            <div class="sensor-tail" aria-hidden="true"></div>
+
+                            <div class="sensor-object">
+                                <div class="sensor-edge"></div>
+
+                                <div
+                                    class="sensor-matrix"
+                                    id="sensor-matrix"
+                                    role="group"
+                                    aria-label="Interactive FlexiTac sensor surface">
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <p class="sensor-footnote">
+                            FLEXIBLE TACTILE ARRAY · CONCEPTUAL VIEW
+                        </p>
+
+                    </div>
+
+
+                    <!-- TOUCH RESPONSE -->
+                    <div class="response-view">
+
+                        <div class="view-heading">
+                            <span>02 / TOUCH RESPONSE</span>
+                            <span>LIVE MAP</span>
+                        </div>
+
+                        <div
+                            class="response-map"
+                            id="response-map"
+                            aria-label="Simulated tactile response heatmap">
+                        </div>
+
+                        <div class="response-readout">
+
+                            <div>
+                                <span>CONTACT LOCATION</span>
+                                <strong id="touch-coordinate">—</strong>
+                            </div>
+
+                            <div>
+                                <span>SIGNAL INTENSITY</span>
+                                <strong id="touch-intensity">0%</strong>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="flexitac-stage-bottom">
+                    <span id="active-cell-count">0 RESPONSE POINTS ACTIVE</span>
+
+                    <button type="button" id="touch-reset">
+                        CLEAR CONTACT ↺
+                    </button>
+                </div>
+
+            </div>
+
+        </section>
+
     </section>
 
 
@@ -219,6 +315,7 @@
     <section id="exploring" class="exploring section-wrap">
 
         <div class="section-heading">
+
             <div>
                 <p class="eyebrow">02 / CURRENTLY EXPLORING</p>
                 <h2>Bimanual<br><span>Manipulation.</span></h2>
@@ -228,6 +325,7 @@
                 Exploring tactile feedback, robotic
                 interaction and hardware.
             </p>
+
         </div>
 
         <div class="explore-layout">
@@ -290,6 +388,7 @@
             </div>
 
         </div>
+
     </section>
 
 
