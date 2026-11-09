@@ -3,6 +3,7 @@
 // =====================================
 
 // THEME TOGGLE
+
 const themeToggle = document.getElementById("theme-toggle");
 const themeIcon = document.querySelector(".theme-icon");
 const savedTheme = localStorage.getItem("portfolio-theme");
@@ -107,7 +108,7 @@ if ("IntersectionObserver" in window) {
 
 
 // =====================================
-// FLEXITAC — 16 × 16 TOUCH VISUALIZER
+// FLEXITAC 16 × 16 TOUCH VISUALIZER
 // =====================================
 
 (() => {
@@ -116,57 +117,64 @@ if ("IntersectionObserver" in window) {
 
     if (!sensorMatrix || !responseMap) return;
 
+    const countLabel = document.getElementById("active-cell-count");
     const coordinateLabel = document.getElementById("touch-coordinate");
     const intensityLabel = document.getElementById("touch-intensity");
-    const activeCountLabel = document.getElementById("active-cell-count");
     const statusText = document.getElementById("sensor-status-text");
     const status = document.getElementById("sensor-status");
     const resetButton = document.getElementById("touch-reset");
 
     const SIZE = 16;
-    const TOTAL_CELLS = SIZE * SIZE;
+    const TOTAL = SIZE * SIZE;
 
     const sensorCells = [];
     const responseCells = [];
 
-    function createCell(className, label) {
-        const cell = document.createElement("button");
+    // CREATE SENSOR AND RESPONSE CELLS
 
-        cell.type = "button";
-        cell.className = className;
-        cell.setAttribute("aria-label", label);
+    for (let i = 0; i < TOTAL; i++) {
+        const row = Math.floor(i / SIZE) + 1;
+        const col = (i % SIZE) + 1;
 
-        return cell;
-    }
+        const sensorCell = document.createElement("button");
 
-    // Create the 16 × 16 sensor grid.
-    for (let i = 0; i < TOTAL_CELLS; i++) {
-        const row = Math.floor(i / SIZE);
-        const col = i % SIZE;
+        sensorCell.type = "button";
+        sensorCell.className = "sensor-point";
 
-        const cell = createCell(
-            "sensor-point",
-            `Sensor row ${row + 1}, column ${col + 1}`
+        sensorCell.setAttribute(
+            "aria-label",
+            `Sensor row ${row}, column ${col}`
         );
 
-        cell.addEventListener("pointerenter", () => activateCell(i));
-        cell.addEventListener("focus", () => activateCell(i));
-        cell.addEventListener("click", () => activateCell(i));
+        sensorCell.addEventListener(
+            "pointerenter",
+            () => activateCell(i)
+        );
 
-        sensorMatrix.appendChild(cell);
-        sensorCells.push(cell);
+        sensorCell.addEventListener(
+            "focus",
+            () => activateCell(i)
+        );
+
+        sensorCell.addEventListener(
+            "click",
+            () => activateCell(i)
+        );
+
+        sensorMatrix.appendChild(sensorCell);
+        sensorCells.push(sensorCell);
+
+        const responseCell = document.createElement("span");
+
+        responseCell.className = "response-point";
+        responseCell.setAttribute("aria-hidden", "true");
+
+        responseMap.appendChild(responseCell);
+        responseCells.push(responseCell);
     }
 
-    // Create the corresponding 16 × 16 response heatmap.
-    for (let i = 0; i < TOTAL_CELLS; i++) {
-        const cell = document.createElement("span");
 
-        cell.className = "response-point";
-        cell.setAttribute("aria-hidden", "true");
-
-        responseMap.appendChild(cell);
-        responseCells.push(cell);
-    }
+    // ACTIVATE A SENSOR CELL
 
     function activateCell(index) {
         const row = Math.floor(index / SIZE);
@@ -177,6 +185,8 @@ if ("IntersectionObserver" in window) {
         sensorCells.forEach((cell, i) => {
             cell.classList.toggle("is-active", i === index);
         });
+
+        let activeCount = 0;
 
         responseCells.forEach((cell, i) => {
             const currentRow = Math.floor(i / SIZE);
@@ -198,9 +208,14 @@ if ("IntersectionObserver" in window) {
                     "--response-intensity",
                     `${strength}%`
                 );
+
+                activeCount++;
             } else {
                 cell.classList.remove("is-active");
-                cell.style.removeProperty("--response-intensity");
+
+                cell.style.removeProperty(
+                    "--response-intensity"
+                );
             }
         });
 
@@ -213,12 +228,8 @@ if ("IntersectionObserver" in window) {
             intensityLabel.textContent = `${intensity}%`;
         }
 
-        if (activeCountLabel) {
-            const activeCount = responseCells.filter(cell =>
-                cell.classList.contains("is-active")
-            ).length;
-
-            activeCountLabel.textContent =
+        if (countLabel) {
+            countLabel.textContent =
                 `${activeCount} SENSOR POINTS ACTIVE`;
         }
 
@@ -229,6 +240,9 @@ if ("IntersectionObserver" in window) {
         status?.classList.add("is-active");
     }
 
+
+    // RESET VISUALIZER
+
     function resetGrid() {
         sensorCells.forEach(cell => {
             cell.classList.remove("is-active");
@@ -236,13 +250,22 @@ if ("IntersectionObserver" in window) {
 
         responseCells.forEach(cell => {
             cell.classList.remove("is-active");
-            cell.style.removeProperty("--response-intensity");
+
+            cell.style.removeProperty(
+                "--response-intensity"
+            );
         });
 
-        if (coordinateLabel) coordinateLabel.textContent = "—";
-        if (intensityLabel) intensityLabel.textContent = "0%";
-        if (activeCountLabel) {
-            activeCountLabel.textContent = "0 SENSOR POINTS ACTIVE";
+        if (countLabel) {
+            countLabel.textContent = "0 SENSOR POINTS ACTIVE";
+        }
+
+        if (coordinateLabel) {
+            coordinateLabel.textContent = "—";
+        }
+
+        if (intensityLabel) {
+            intensityLabel.textContent = "0%";
         }
 
         if (statusText) {
@@ -253,4 +276,5 @@ if ("IntersectionObserver" in window) {
     }
 
     resetButton?.addEventListener("click", resetGrid);
+
 })();
