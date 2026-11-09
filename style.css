@@ -35,8 +35,6 @@ body.light-theme {
     --lime: #d8f36a;
 }
 
-/* GLOBAL */
-
 * {
     margin: 0;
     padding: 0;
@@ -54,13 +52,6 @@ body {
     font-family: var(--body);
     overflow-x: hidden;
     transition: background .35s ease, color .35s ease;
-
-    background-image:
-        linear-gradient(rgba(182, 193, 154, 0.055) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(182, 193, 154, 0.055) 1px, transparent 1px);
-
-    background-size: 65px 65px;
-    background-position: center top;
 }
 
 a {
@@ -76,7 +67,6 @@ button {
     background: var(--lime);
     color: #171914;
 }
-
 
 /* NAVIGATION */
 
@@ -147,7 +137,6 @@ button {
     color: #171914;
 }
 
-
 /* COMMON */
 
 .section-wrap {
@@ -190,7 +179,6 @@ button {
     font-size: .9rem;
     padding-bottom: 8px;
 }
-
 
 /* HERO / ABOUT ME */
 
@@ -291,8 +279,10 @@ button {
     font-size: 1.1rem;
 }
 
+/* SMALLER PROFILE PHOTO */
+
 .hero-visual {
-    max-width: 370px;
+    max-width: 300px;
     width: 100%;
     justify-self: end;
 }
@@ -308,7 +298,7 @@ button {
 
 .profile-photo {
     width: 100%;
-    height: 440px;
+    height: 360px;
     object-fit: cover;
     display: block;
     filter: none;
@@ -330,7 +320,6 @@ button {
     border-top: 1px solid var(--line);
     padding-top: 20px;
 }
-
 
 /* PROJECTS */
 
@@ -458,7 +447,6 @@ button {
     font-size: 1rem;
 }
 
-
 /* CURRENTLY EXPLORING */
 
 .exploring {
@@ -481,22 +469,15 @@ button {
     border: none;
     transform: none;
     box-shadow: none;
-    display: block;
-    width: 100%;
-    min-width: 0;
-    height: auto;
-    overflow: visible;
 }
 
 .explore-image img {
     display: block;
     width: 100%;
-    height: auto !important;
-    max-height: 650px;
-    object-fit: contain !important;
-    object-position: center;
+    height: 440px;
+    object-fit: cover;
     border-radius: 3px;
-    background: transparent;
+    background: var(--paper);
 }
 
 .image-caption {
@@ -542,7 +523,6 @@ button {
     color: var(--blue);
     font-size: 1.5rem;
 }
-
 
 /* CONTACT */
 
@@ -634,7 +614,6 @@ button {
     font-size: .7rem;
 }
 
-
 /* SCROLL REVEALS */
 
 .reveal {
@@ -647,7 +626,6 @@ button {
     opacity: 1;
     transform: translateY(0);
 }
-
 
 /* RESPONSIVE */
 
@@ -666,8 +644,12 @@ button {
         gap: 30px;
     }
 
+    .hero-visual {
+        max-width: 270px;
+    }
+
     .profile-photo {
-        height: 350px;
+        height: 330px;
     }
 
     .project {
@@ -684,7 +666,7 @@ button {
     }
 
     .explore-image img {
-        height: auto;
+        height: 360px;
     }
 
     .section-heading h2 {
@@ -732,13 +714,13 @@ button {
     }
 
     .hero-visual {
-        width: 85%;
-        max-width: 370px;
+        width: 80%;
+        max-width: 300px;
         justify-self: center;
     }
 
     .profile-photo {
-        height: 390px;
+        height: 350px;
     }
 
     .hero-bottomline {
@@ -783,7 +765,7 @@ button {
     }
 
     .explore-image img {
-        height: auto;
+        height: 320px;
     }
 
     .explore-copy h3 {
@@ -828,37 +810,118 @@ button {
     }
 }
 
+/* SUBTLE SAGE GRID BACKGROUND */
+
+body {
+    background-image:
+        linear-gradient(
+            rgba(182, 193, 154, 0.055) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            90deg,
+            rgba(182, 193, 154, 0.055) 1px,
+            transparent 1px
+        );
+
+    background-size: 65px 65px;
+    background-position: center top;
+}
+
+/* SHOW COMPLETE PCB IMAGE */
+
+.explore-image {
+    display: block !important;
+    width: 100%;
+    min-width: 0;
+    height: auto;
+    overflow: visible;
+}
+
+.explore-image img {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+    max-height: 650px;
+    object-fit: contain !important;
+    object-position: center;
+    opacity: 1 !important;
+    visibility: visible !important;
+    border-radius: 3px;
+    background: transparent;
+}
 
 /* =========================================
-   FLEXITAC GRID — FINAL STYLING
+   FLEXITAC INTERACTIVE TOUCH VISUALIZER
 ========================================= */
 
 .flexitac-demo {
-    display: block !important;
-    max-width: 1020px;
-    margin: 34px auto 0;
+    margin-top: 34px;
     padding: clamp(24px, 4vw, 48px);
+    display: grid;
+    grid-template-columns: minmax(210px, .72fr) minmax(0, 1.55fr);
+    gap: clamp(28px, 5vw, 70px);
+    align-items: center;
     background: var(--paper);
     border: 1px solid var(--line);
 }
 
-.flexitac-heading {
-    display: block;
-    margin: 0 0 24px;
-}
-
-.flexitac-heading h3 {
-    margin-top: 10px;
-    font: 600 clamp(2.4rem, 5vw, 4rem)/.98 var(--display);
+.flexitac-intro h3 {
+    margin: 18px 0;
+    font: 600 clamp(2.5rem, 4.2vw, 4rem)/.98 var(--display);
     letter-spacing: -.075em;
 }
 
-.flexitac-heading h3 span {
+.flexitac-intro h3 span {
     color: var(--blue);
 }
 
+.flexitac-intro > p:not(.eyebrow):not(.flexitac-hint) {
+    max-width: 350px;
+    color: var(--muted);
+    font-size: .9rem;
+    line-height: 1.85;
+}
+
+.flexitac-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-top: 25px;
+    color: var(--muted);
+    font: .65rem var(--mono);
+}
+
+.flexitac-legend span {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+}
+
+.legend-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.legend-dot.idle {
+    background: #596052;
+}
+
+.legend-dot.active {
+    background: var(--lime);
+    box-shadow: 0 0 10px #d8f36a80;
+}
+
+.flexitac-hint {
+    margin-top: 28px;
+    color: var(--blue);
+    font: .58rem/1.6 var(--mono);
+    letter-spacing: .07em;
+}
+
 .flexitac-stage {
-    width: 100%;
     min-width: 0;
     padding: clamp(16px, 2.5vw, 27px);
     border: 1px solid var(--line);
@@ -867,7 +930,7 @@ button {
 
 .flexitac-stage-top,
 .flexitac-stage-bottom,
-.view-heading {
+.touch-panel-heading {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -900,175 +963,163 @@ button {
     font-weight: 400;
 }
 
-.flexitac-pair {
+.flexitac-visual {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: clamp(16px, 2.5vw, 28px);
-    padding: 26px 0 22px;
+    grid-template-columns: .85fr 1fr;
+    gap: clamp(16px, 3vw, 32px);
+    align-items: center;
+    padding: 30px 0 24px;
 }
 
-.sensor-view,
-.response-view {
+.flexitac-hardware {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 13px;
+    perspective: 700px;
+}
+
+.hardware-label,
+.hardware-caption {
+    color: var(--muted);
+    text-align: center;
+    font: .52rem/1.6 var(--mono);
+    letter-spacing: .08em;
+}
+
+.sensor-board {
+    width: min(100%, 210px);
+    aspect-ratio: 1 / 1.12;
+    position: relative;
+    display: grid;
+    place-items: center;
+    border: 1px solid #65705a;
+    border-radius: 13px;
+    background:
+        linear-gradient(135deg, #a9b88b18, transparent 45%),
+        repeating-linear-gradient(0deg, transparent 0 15px, #c8d6a018 16px),
+        repeating-linear-gradient(90deg, transparent 0 15px, #c8d6a018 16px),
+        linear-gradient(145deg, #384333, #1d281f 65%, #111812);
+    box-shadow: 0 13px 0 #111710, 0 18px 28px #0005, inset 0 0 24px #d8f36a0d;
+    transform: rotateX(7deg) rotateZ(-5deg);
+    transition: transform .3s ease, box-shadow .3s ease;
+}
+
+.sensor-board:hover {
+    transform: rotateX(0) rotateZ(0) translateY(-3px);
+}
+
+.board-grid {
+    width: 68%;
+    aspect-ratio: 1;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 7px;
+    padding: 10px;
+    border: 1px solid #a7b68b70;
+    background: #111b16;
+    border-radius: 5px;
+}
+
+.board-grid span {
+    border: 1px solid #a7b68b;
+    border-radius: 2px;
+    background: linear-gradient(135deg, #9aaa7a, #4b6347);
+    box-shadow: inset 0 0 5px #d8f36a55;
+}
+
+.board-core {
+    position: absolute;
+    right: 9%;
+    bottom: 9%;
+    color: #d8f36a;
+    font: 700 .65rem var(--mono);
+    letter-spacing: .08em;
+}
+
+.board-connector {
+    position: absolute;
+    left: -8px;
+    width: 13px;
+    height: 30px;
+    border: 1px solid #7e8e68;
+    background: repeating-linear-gradient(0deg, #c3ce9a 0 3px, #46543d 3px 6px);
+}
+
+.connector-one {
+    top: 20%;
+}
+
+.connector-two {
+    bottom: 20%;
+}
+
+.touch-panel {
     min-width: 0;
 }
 
-.view-heading {
-    display: flex;
-    margin-bottom: 13px;
+.touch-panel-heading {
+    margin-bottom: 12px;
     font-size: .53rem;
 }
 
-.sensor-object-wrap {
-    position: relative;
-    padding: 12px 8px 12px 22px;
-    min-height: 230px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #171d17;
-    border: 1px solid #384333;
-    overflow: hidden;
-}
-
-.sensor-object {
-    position: relative;
-    width: 88%;
-    aspect-ratio: 1;
-    padding: 5px;
-    transform: perspective(600px) rotateY(-5deg) rotateZ(-1deg);
-    background: linear-gradient(
-        145deg,
-        #b46b25,
-        #633817 45%,
-        #d18a35
-    );
-    border: 2px solid #c47b2c;
-    box-shadow:
-        0 9px 18px #0008,
-        inset 0 0 0 2px #3c2818;
-}
-
-.sensor-edge {
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    border: 1px solid #f2b45b;
-    z-index: 2;
-}
-
-.sensor-matrix,
-.response-map {
+.touch-grid {
     display: grid;
-    grid-template-columns: repeat(16, minmax(0, 1fr));
-    grid-template-rows: repeat(16, minmax(0, 1fr));
-    gap: 2px;
-    width: 100%;
-    aspect-ratio: 1;
-}
-
-.sensor-matrix {
-    position: relative;
-    z-index: 1;
-    height: 100%;
-    background: #211b12;
-    padding: 2px;
-}
-
-.sensor-point {
-    min-width: 0;
-    min-height: 0;
-    border: 1px solid #a65c1d;
-    border-radius: 1px;
-    padding: 0;
-    background: repeating-linear-gradient(
-        135deg,
-        #d68a32 0 1px,
-        #442b19 1px 3px
-    );
-    cursor: crosshair;
-    transition:
-        background .08s,
-        box-shadow .08s,
-        transform .08s;
-}
-
-.sensor-point:hover,
-.sensor-point.is-focused {
-    background: #fff0a0;
-    box-shadow:
-        0 0 7px #ffb13b,
-        0 0 12px #ff8a20;
-    transform: scale(1.18);
-    z-index: 3;
-}
-
-.sensor-tail {
-    position: absolute;
-    left: 0;
-    bottom: 28px;
-    width: 27px;
-    height: 32px;
-    background: linear-gradient(
-        180deg,
-        #b86d28,
-        #6f3e19
-    );
-    transform: translateX(-4px) skewY(-9deg);
-    box-shadow: -5px 3px 0 #7e491e;
-}
-
-.sensor-footnote {
-    margin-top: 10px;
-    color: var(--muted);
-    font: .49rem var(--mono);
-    letter-spacing: .05em;
-    text-align: center;
-}
-
-.response-map {
-    padding: 5px;
-    background: #111710;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    gap: clamp(3px, .65vw, 7px);
+    padding: clamp(8px, 1.4vw, 13px);
     border: 1px solid var(--line);
+    background: #111710;
+    border-radius: 5px;
+    touch-action: manipulation;
 }
 
-.response-point {
+.touch-cell {
+    aspect-ratio: 1;
     min-width: 0;
-    min-height: 0;
-    border: 1px solid #3c4939;
-    border-radius: 1px;
-    background: #263327;
-    transition:
-        background .09s,
-        box-shadow .09s;
+    padding: 0;
+    border: 1px solid #56624e;
+    border-radius: 2px;
+    background: #29352a;
+    cursor: crosshair;
+    transition: background .12s ease, border-color .12s ease, box-shadow .12s ease, transform .12s ease;
 }
 
-.response-point.is-lit {
-    background: var(--heat, #d8f36a);
-    border-color: #fff0a0;
-    box-shadow: 0 0 8px var(--heat, #d8f36a);
+.touch-cell:hover,
+.touch-cell.is-active {
+    background: var(--cell-color, #d8f36a);
+    border-color: #f2ffb2;
+    box-shadow: 0 0 12px color-mix(in srgb, var(--cell-color, #d8f36a) 65%, transparent);
+    transform: scale(1.08);
 }
 
-.response-readout {
+.touch-cell:focus-visible {
+    outline: 2px solid var(--blue);
+    outline-offset: 2px;
+}
+
+.touch-readout {
     display: flex;
     justify-content: space-between;
-    gap: 8px;
-    padding-top: 13px;
+    gap: 12px;
+    padding-top: 14px;
 }
 
-.response-readout div {
+.touch-readout > div {
     display: grid;
     gap: 5px;
 }
 
-.response-readout span {
+.readout-label {
     color: var(--muted);
-    font: .48rem var(--mono);
-    letter-spacing: .04em;
+    font: .5rem var(--mono);
+    letter-spacing: .06em;
 }
 
-.response-readout strong {
+.touch-readout strong {
     color: var(--ink);
-    font: 500 .8rem var(--mono);
+    font: 500 .85rem var(--mono);
 }
 
 .flexitac-stage-bottom {
@@ -1090,24 +1141,45 @@ button {
     color: var(--ink);
 }
 
+@media (max-width: 850px) {
+    .flexitac-demo {
+        grid-template-columns: 1fr;
+    }
 
-/* FLEXITAC MOBILE RESPONSIVENESS */
+    .flexitac-intro > p:not(.eyebrow):not(.flexitac-hint) {
+        max-width: 600px;
+    }
 
-@media (max-width: 600px) {
+    .flexitac-visual {
+        grid-template-columns: .8fr 1fr;
+    }
+}
 
+@media (max-width: 520px) {
     .flexitac-demo {
         padding: 22px 16px;
     }
 
-    .flexitac-pair {
+    .flexitac-visual {
         grid-template-columns: 1fr;
     }
 
-    .sensor-object-wrap {
-        min-height: 250px;
+    .sensor-board {
+        width: min(58%, 190px);
     }
 
-    .sensor-object {
-        width: min(78%, 230px);
+    .touch-grid {
+        gap: 5px;
     }
+
+    .flexitac-stage-top,
+    .flexitac-stage-bottom {
+        font-size: .49rem;
+    }
+}
+
+/* REMOVE ONLY THE PURPLE LABEL ABOVE HIEE */
+
+.hero-copy > .eyebrow {
+    display: none !important;
 }
