@@ -2,10 +2,12 @@
 // MAHI PORTFOLIO INTERACTIONS
 // =====================================
 
+
 // THEME TOGGLE
 
 const themeToggle = document.getElementById("theme-toggle");
 const themeIcon = document.querySelector(".theme-icon");
+
 const savedTheme = localStorage.getItem("portfolio-theme");
 
 if (savedTheme === "light") {
@@ -30,6 +32,7 @@ function updateThemeControl() {
 updateThemeControl();
 
 themeToggle?.addEventListener("click", () => {
+
     document.body.classList.toggle("light-theme");
 
     const isLight = document.body.classList.contains("light-theme");
@@ -40,6 +43,7 @@ themeToggle?.addEventListener("click", () => {
     );
 
     updateThemeControl();
+
 });
 
 
@@ -52,25 +56,36 @@ const revealElements = document.querySelectorAll(
 );
 
 if ("IntersectionObserver" in window) {
+
     revealElements.forEach(element => {
         element.classList.add("reveal");
     });
 
     const revealObserver = new IntersectionObserver(
         (entries, observer) => {
+
             entries.forEach(entry => {
+
                 if (entry.isIntersecting) {
+
                     entry.target.classList.add("visible");
+
                     observer.unobserve(entry.target);
+
                 }
+
             });
+
         },
-        { threshold: 0.12 }
+        {
+            threshold: 0.12
+        }
     );
 
     revealElements.forEach(element => {
         revealObserver.observe(element);
     });
+
 }
 
 
@@ -85,25 +100,37 @@ const sections = document.querySelectorAll(
 const navLinks = document.querySelectorAll(".nav-links a");
 
 if ("IntersectionObserver" in window) {
+
     const navObserver = new IntersectionObserver(
         entries => {
+
             entries.forEach(entry => {
+
                 if (entry.isIntersecting) {
+
                     navLinks.forEach(link => {
+
                         link.classList.toggle(
                             "active",
                             link.getAttribute("href") === `#${entry.target.id}`
                         );
+
                     });
+
                 }
+
             });
+
         },
-        { rootMargin: "-35% 0px -55% 0px" }
+        {
+            rootMargin: "-35% 0px -55% 0px"
+        }
     );
 
     sections.forEach(section => {
         navObserver.observe(section);
     });
+
 }
 
 
@@ -112,6 +139,7 @@ if ("IntersectionObserver" in window) {
 // =====================================
 
 (() => {
+
     const sensorMatrix = document.getElementById("sensor-matrix");
     const responseMap = document.getElementById("response-map");
 
@@ -120,8 +148,10 @@ if ("IntersectionObserver" in window) {
     const countLabel = document.getElementById("active-cell-count");
     const coordinateLabel = document.getElementById("touch-coordinate");
     const intensityLabel = document.getElementById("touch-intensity");
+
     const statusText = document.getElementById("sensor-status-text");
     const status = document.getElementById("sensor-status");
+
     const resetButton = document.getElementById("touch-reset");
 
     const SIZE = 16;
@@ -130,9 +160,11 @@ if ("IntersectionObserver" in window) {
     const sensorCells = [];
     const responseCells = [];
 
-    // CREATE SENSOR AND RESPONSE CELLS
+
+    // CREATE SENSOR GRID AND RESPONSE GRID
 
     for (let i = 0; i < TOTAL; i++) {
+
         const row = Math.floor(i / SIZE) + 1;
         const col = (i % SIZE) + 1;
 
@@ -162,33 +194,48 @@ if ("IntersectionObserver" in window) {
         );
 
         sensorMatrix.appendChild(sensorCell);
+
         sensorCells.push(sensorCell);
+
 
         const responseCell = document.createElement("span");
 
         responseCell.className = "response-point";
+
         responseCell.setAttribute("aria-hidden", "true");
 
         responseMap.appendChild(responseCell);
+
         responseCells.push(responseCell);
+
     }
 
 
     // ACTIVATE A SENSOR CELL
 
     function activateCell(index) {
+
         const row = Math.floor(index / SIZE);
         const col = index % SIZE;
 
         const intensity = 55 + Math.floor(Math.random() * 46);
 
+
         sensorCells.forEach((cell, i) => {
-            cell.classList.toggle("is-active", i === index);
+
+            cell.classList.toggle(
+                "is-active",
+                i === index
+            );
+
         });
+
 
         let activeCount = 0;
 
+
         responseCells.forEach((cell, i) => {
+
             const currentRow = Math.floor(i / SIZE);
             const currentCol = i % SIZE;
 
@@ -201,7 +248,9 @@ if ("IntersectionObserver" in window) {
                 intensity - distance * 19
             );
 
+
             if (strength > 0) {
+
                 cell.classList.add("is-active");
 
                 cell.style.setProperty(
@@ -210,14 +259,19 @@ if ("IntersectionObserver" in window) {
                 );
 
                 activeCount++;
+
             } else {
+
                 cell.classList.remove("is-active");
 
                 cell.style.removeProperty(
                     "--response-intensity"
                 );
+
             }
+
         });
+
 
         if (coordinateLabel) {
             coordinateLabel.textContent =
@@ -238,23 +292,29 @@ if ("IntersectionObserver" in window) {
         }
 
         status?.classList.add("is-active");
+
     }
 
 
-    // RESET VISUALIZER
+    // RESET THE VISUALIZER
 
     function resetGrid() {
+
         sensorCells.forEach(cell => {
             cell.classList.remove("is-active");
         });
 
+
         responseCells.forEach(cell => {
+
             cell.classList.remove("is-active");
 
             cell.style.removeProperty(
                 "--response-intensity"
             );
+
         });
+
 
         if (countLabel) {
             countLabel.textContent = "0 SENSOR POINTS ACTIVE";
@@ -273,7 +333,9 @@ if ("IntersectionObserver" in window) {
         }
 
         status?.classList.remove("is-active");
+
     }
+
 
     resetButton?.addEventListener("click", resetGrid);
 
