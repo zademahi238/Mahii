@@ -11,28 +11,10 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css">
-
-    <style>
-        .explore-image {
-            width: 100%;
-            height: auto;
-            overflow: visible;
-        }
-
-        .explore-image img {
-            display: block;
-            width: 100%;
-            height: auto !important;
-            max-height: 650px;
-            object-fit: contain !important;
-            object-position: center;
-            border-radius: 3px;
-            background: transparent;
-        }
-    </style>
+    <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
@@ -47,7 +29,7 @@
         <a href="#contact">Contact</a>
     </nav>
 
-    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch to light theme">
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch theme">
         <span class="theme-icon">☼</span>
     </button>
 </header>
@@ -55,6 +37,7 @@
 <main>
 
     <!-- ABOUT ME -->
+
     <section id="home" class="hero section-wrap">
 
         <div class="hero-layout">
@@ -93,14 +76,12 @@
             </div>
 
             <div class="hero-visual">
-
                 <div class="photo-frame">
                     <img
-                        src="assets/images/website.jpeg"
+                        src="./assets/images/website.jpeg"
                         alt="Mahi"
                         class="profile-photo">
                 </div>
-
             </div>
 
         </div>
@@ -109,12 +90,14 @@
 
 
     <!-- PROJECTS -->
+
     <section id="work" class="projects section-wrap">
 
         <div class="section-heading">
-            <div>
-                <h2>Things I've<br><span>been building.</span></h2>
-            </div>
+            <h2>
+                Things I've<br>
+                <span>been building.</span>
+            </h2>
         </div>
 
         <article class="project">
@@ -130,7 +113,8 @@
                     controls
                     preload="metadata">
 
-                    <source src="assets/images/mimosa.mp4" type="video/mp4">
+                    <source src="./assets/images/mimosa.mp4" type="video/mp4">
+
                     Your browser does not support this video.
 
                 </video>
@@ -181,21 +165,25 @@
                 </a>
 
             </div>
+
         </article>
 
 
-        <!-- FLEXITAC INTERACTIVE SENSOR + LIVE RESPONSE -->
+        <!-- FLEXITAC -->
+
         <section class="flexitac-demo" aria-labelledby="flexitac-title">
 
             <div class="flexitac-heading">
-                <p class="eyebrow">INTERACTIVE HARDWARE</p>
-                <h3 id="flexitac-title">FlexiTac <span>Grid.</span></h3>
+                <h3 id="flexitac-title">
+                    FlexiTac <span>Grid.</span>
+                </h3>
             </div>
 
             <div class="flexitac-stage">
 
                 <div class="flexitac-stage-top">
                     <span>FLEXITAC / SENSOR ASSEMBLY</span>
+
                     <span class="sensor-status" id="sensor-status">
                         <i></i>
                         <b id="sensor-status-text">NO CONTACT</b>
@@ -205,34 +193,28 @@
                 <div class="flexitac-pair">
 
                     <div class="sensor-view">
+
                         <div class="view-heading">
-                            <span>01 / SENSOR SURFACE</span>
-                            <span>160 × 160 mm</span>
+                            <span>SENSOR SURFACE</span>
+                            <span>16 × 16</span>
                         </div>
 
                         <div class="sensor-object-wrap">
-                            <div class="sensor-tail" aria-hidden="true"></div>
-
                             <div class="sensor-object">
-                                <div class="sensor-edge"></div>
-
-                                <div
-                                    class="sensor-matrix"
-                                    id="sensor-matrix"
-                                    role="group"
-                                    aria-label="Interactive FlexiTac sensor surface">
+                                <div class="sensor-matrix"
+                                     id="sensor-matrix"
+                                     role="group"
+                                     aria-label="Interactive FlexiTac sensor surface">
                                 </div>
                             </div>
                         </div>
 
-                        <p class="sensor-footnote">
-                            FLEXIBLE TACTILE ARRAY · CONCEPTUAL VIEW
-                        </p>
                     </div>
 
                     <div class="response-view">
+
                         <div class="view-heading">
-                            <span>02 / TOUCH RESPONSE</span>
+                            <span>TOUCH RESPONSE</span>
                             <span>LIVE MAP</span>
                         </div>
 
@@ -243,6 +225,7 @@
                         </div>
 
                         <div class="response-readout">
+
                             <div>
                                 <span>CONTACT LOCATION</span>
                                 <strong id="touch-coordinate">—</strong>
@@ -252,35 +235,37 @@
                                 <span>SIGNAL INTENSITY</span>
                                 <strong id="touch-intensity">0%</strong>
                             </div>
+
                         </div>
+
                     </div>
 
                 </div>
 
                 <div class="flexitac-stage-bottom">
                     <span id="active-cell-count">0 SENSOR POINTS ACTIVE</span>
-                    <button type="button" id="touch-reset">CLEAR CONTACT ↺</button>
+
+                    <button type="button" id="touch-reset">
+                        CLEAR CONTACT ↺
+                    </button>
                 </div>
 
             </div>
+
         </section>
 
     </section>
 
 
-    <!-- CURRENTLY EXPLORING -->
+    <!-- EXPLORING -->
+
     <section id="exploring" class="exploring section-wrap">
 
         <div class="section-heading">
-            <div>
-                <p class="eyebrow">02 / CURRENTLY EXPLORING</p>
-                <h2>Bimanual<br><span>Manipulation.</span></h2>
-            </div>
-
-            <p class="heading-note">
-                Exploring tactile feedback, robotic
-                interaction and hardware.
-            </p>
+            <h2>
+                Bimanual<br>
+                <span>Manipulation.</span>
+            </h2>
         </div>
 
         <div class="explore-layout">
@@ -288,14 +273,12 @@
             <div class="explore-image">
 
                 <img
-                    src="assets/images/bimual.jpeg"
+                    src="./assets/images/bimual.jpeg"
                     alt="Bimanual manipulation and FlexiTac PCB">
 
             </div>
 
             <div class="explore-copy">
-
-                <p class="eyebrow">ON THE WORKBENCH</p>
 
                 <h3>
                     Bimanual Manipulation
@@ -334,13 +317,13 @@
             </div>
 
         </div>
+
     </section>
 
 
     <!-- CONTACT -->
-    <section id="contact" class="contact section-wrap">
 
-        <p class="eyebrow">03 / GET IN TOUCH</p>
+    <section id="contact" class="contact section-wrap">
 
         <div class="contact-heading">
 
@@ -395,7 +378,7 @@
 
 </main>
 
-<script src="scripts.js"></script>
+<script src="./scripts.js"></script>
 
 </body>
 </html>
