@@ -2,9 +2,7 @@
 // MAHI PORTFOLIO INTERACTIONS
 // =====================================
 
-// DARK THEME IS THE DEFAULT.
-// A saved light-theme preference is respected.
-
+// THEME TOGGLE
 const themeToggle = document.getElementById("theme-toggle");
 const themeIcon = document.querySelector(".theme-icon");
 const savedTheme = localStorage.getItem("portfolio-theme");
@@ -30,11 +28,7 @@ function updateThemeControl() {
 
 updateThemeControl();
 
-
-// THEME TOGGLE
-
 themeToggle?.addEventListener("click", () => {
-
     document.body.classList.toggle("light-theme");
 
     const isLight = document.body.classList.contains("light-theme");
@@ -45,51 +39,43 @@ themeToggle?.addEventListener("click", () => {
     );
 
     updateThemeControl();
-
 });
 
 
+// =====================================
 // SCROLL REVEAL ANIMATIONS
+// =====================================
 
 const revealElements = document.querySelectorAll(
     ".project, .section-heading, .explore-layout, .contact-heading, .social-links, .flexitac-demo"
 );
 
 if ("IntersectionObserver" in window) {
-
     revealElements.forEach(element => {
         element.classList.add("reveal");
     });
 
     const revealObserver = new IntersectionObserver(
         (entries, observer) => {
-
             entries.forEach(entry => {
-
                 if (entry.isIntersecting) {
-
                     entry.target.classList.add("visible");
-
                     observer.unobserve(entry.target);
-
                 }
-
             });
-
         },
-        {
-            threshold: 0.12
-        }
+        { threshold: 0.12 }
     );
 
     revealElements.forEach(element => {
         revealObserver.observe(element);
     });
-
 }
 
 
+// =====================================
 // ACTIVE NAVIGATION
+// =====================================
 
 const sections = document.querySelectorAll(
     "#home, #work, #exploring, #contact"
@@ -98,227 +84,173 @@ const sections = document.querySelectorAll(
 const navLinks = document.querySelectorAll(".nav-links a");
 
 if ("IntersectionObserver" in window) {
-
     const navObserver = new IntersectionObserver(
         entries => {
-
             entries.forEach(entry => {
-
                 if (entry.isIntersecting) {
-
                     navLinks.forEach(link => {
-
                         link.classList.toggle(
                             "active",
                             link.getAttribute("href") === `#${entry.target.id}`
                         );
-
                     });
-
                 }
-
             });
-
         },
-        {
-            rootMargin: "-35% 0px -55% 0px"
-        }
+        { rootMargin: "-35% 0px -55% 0px" }
     );
 
     sections.forEach(section => {
         navObserver.observe(section);
     });
-
 }
 
 
 // =====================================
-// FLEXITAC SENSOR + RESPONSE VISUALIZER
+// FLEXITAC — 16 × 16 TOUCH VISUALIZER
 // =====================================
 
 (() => {
+    const sensorMatrix = document.getElementById("sensor-matrix");
+    const responseMap = document.getElementById("response-map");
 
-    const sensor = document.getElementById("sensor-matrix");
-    const response = document.getElementById("response-map");
+    if (!sensorMatrix || !responseMap) return;
 
-    if (!sensor || !response) return;
-
-    const coordinate = document.getElementById("touch-coordinate");
-    const intensity = document.getElementById("touch-intensity");
-    const count = document.getElementById("active-cell-count");
-
-    const status = document.getElementById("sensor-status");
+    const coordinateLabel = document.getElementById("touch-coordinate");
+    const intensityLabel = document.getElementById("touch-intensity");
+    const activeCountLabel = document.getElementById("active-cell-count");
     const statusText = document.getElementById("sensor-status-text");
+    const status = document.getElementById("sensor-status");
+    const resetButton = document.getElementById("touch-reset");
 
-    const reset = document.getElementById("touch-reset");
-
-    const dimension = 16;
+    const SIZE = 16;
+    const TOTAL_CELLS = SIZE * SIZE;
 
     const sensorCells = [];
     const responseCells = [];
 
+    function createCell(className, label) {
+        const cell = document.createElement("button");
 
-    // RESET THE SENSOR
+        cell.type = "button";
+        cell.className = className;
+        cell.setAttribute("aria-label", label);
 
-    function clearContact() {
+        return cell;
+    }
 
+    // Create the 16 × 16 sensor grid.
+    for (let i = 0; i < TOTAL_CELLS; i++) {
+        const row = Math.floor(i / SIZE);
+        const col = i % SIZE;
+
+        const cell = createCell(
+            "sensor-point",
+            `Sensor row ${row + 1}, column ${col + 1}`
+        );
+
+        cell.addEventListener("pointerenter", () => activateCell(i));
+        cell.addEventListener("focus", () => activateCell(i));
+        cell.addEventListener("click", () => activateCell(i));
+
+        sensorMatrix.appendChild(cell);
+        sensorCells.push(cell);
+    }
+
+    // Create the corresponding 16 × 16 response heatmap.
+    for (let i = 0; i < TOTAL_CELLS; i++) {
+        const cell = document.createElement("span");
+
+        cell.className = "response-point";
+        cell.setAttribute("aria-hidden", "true");
+
+        responseMap.appendChild(cell);
+        responseCells.push(cell);
+    }
+
+    function activateCell(index) {
+        const row = Math.floor(index / SIZE);
+        const col = index % SIZE;
+
+        const intensity = 55 + Math.floor(Math.random() * 46);
+
+        sensorCells.forEach((cell, i) => {
+            cell.classList.toggle("is-active", i === index);
+        });
+
+        responseCells.forEach((cell, i) => {
+            const currentRow = Math.floor(i / SIZE);
+            const currentCol = i % SIZE;
+
+            const distance =
+                Math.abs(currentRow - row) +
+                Math.abs(currentCol - col);
+
+            const strength = Math.max(
+                0,
+                intensity - distance * 19
+            );
+
+            if (strength > 0) {
+                cell.classList.add("is-active");
+
+                cell.style.setProperty(
+                    "--response-intensity",
+                    `${strength}%`
+                );
+            } else {
+                cell.classList.remove("is-active");
+                cell.style.removeProperty("--response-intensity");
+            }
+        });
+
+        if (coordinateLabel) {
+            coordinateLabel.textContent =
+                `R${row + 1} · C${col + 1}`;
+        }
+
+        if (intensityLabel) {
+            intensityLabel.textContent = `${intensity}%`;
+        }
+
+        if (activeCountLabel) {
+            const activeCount = responseCells.filter(cell =>
+                cell.classList.contains("is-active")
+            ).length;
+
+            activeCountLabel.textContent =
+                `${activeCount} SENSOR POINTS ACTIVE`;
+        }
+
+        if (statusText) {
+            statusText.textContent = "CONTACT DETECTED";
+        }
+
+        status?.classList.add("is-active");
+    }
+
+    function resetGrid() {
         sensorCells.forEach(cell => {
-            cell.classList.remove("is-focused");
+            cell.classList.remove("is-active");
         });
 
         responseCells.forEach(cell => {
-            cell.classList.remove("is-lit");
-            cell.style.removeProperty("--heat");
+            cell.classList.remove("is-active");
+            cell.style.removeProperty("--response-intensity");
         });
 
-        coordinate.textContent = "—";
-        intensity.textContent = "0%";
+        if (coordinateLabel) coordinateLabel.textContent = "—";
+        if (intensityLabel) intensityLabel.textContent = "0%";
+        if (activeCountLabel) {
+            activeCountLabel.textContent = "0 SENSOR POINTS ACTIVE";
+        }
 
-        count.textContent = "0 RESPONSE POINTS ACTIVE";
+        if (statusText) {
+            statusText.textContent = "NO CONTACT";
+        }
 
-        statusText.textContent = "NO CONTACT";
-
-        status.classList.remove("is-active");
-
+        status?.classList.remove("is-active");
     }
 
-
-    // DISPLAY TOUCH RESPONSE
-
-    function showContact(index) {
-
-        const row = Math.floor(index / dimension);
-        const col = index % dimension;
-
-        const strength = 55 + Math.floor(Math.random() * 41);
-
-        const radius = 3.2;
-
-
-        // Highlight the selected sensor cell
-
-        sensorCells.forEach((cell, i) => {
-
-            cell.classList.toggle(
-                "is-focused",
-                i === index
-            );
-
-        });
-
-
-        // Generate the corresponding heatmap
-
-        let active = 0;
-
-        responseCells.forEach((cell, i) => {
-
-            const r = Math.floor(i / dimension);
-            const c = i % dimension;
-
-            const distance = Math.hypot(
-                r - row,
-                c - col
-            );
-
-            const value = Math.max(
-                0,
-                strength * (1 - distance / radius)
-            );
-
-            const lit = value > 8;
-
-            cell.classList.toggle("is-lit", lit);
-
-            if (lit) {
-
-                active++;
-
-                const hue = 78 - value * 0.12;
-
-                cell.style.setProperty(
-                    "--heat",
-                    `hsl(${hue} 78% ${35 + value * 0.28}%)`
-                );
-
-            } else {
-
-                cell.style.removeProperty("--heat");
-
-            }
-
-        });
-
-
-        // Update live readings
-
-        coordinate.textContent =
-            `R${row + 1} · C${col + 1}`;
-
-        intensity.textContent = `${strength}%`;
-
-        count.textContent =
-            `${active} RESPONSE POINTS ACTIVE`;
-
-        statusText.textContent = "CONTACT DETECTED";
-
-        status.classList.add("is-active");
-
-    }
-
-
-    // CREATE BOTH 16 × 16 GRIDS
-
-    for (let i = 0; i < dimension * dimension; i++) {
-
-        // SENSOR CELL
-
-        const sensorCell = document.createElement("button");
-
-        sensorCell.type = "button";
-
-        sensorCell.className = "sensor-point";
-
-        sensorCell.setAttribute(
-            "aria-label",
-            `Touch sensor row ${Math.floor(i / dimension) + 1}, column ${(i % dimension) + 1}`
-        );
-
-        sensorCell.addEventListener(
-            "pointerenter",
-            () => showContact(i)
-        );
-
-        sensorCell.addEventListener(
-            "focus",
-            () => showContact(i)
-        );
-
-        sensorCell.addEventListener(
-            "click",
-            () => showContact(i)
-        );
-
-        sensor.appendChild(sensorCell);
-
-        sensorCells.push(sensorCell);
-
-
-        // MATCHING RESPONSE CELL
-
-        const responseCell = document.createElement("span");
-
-        responseCell.className = "response-point";
-
-        response.appendChild(responseCell);
-
-        responseCells.push(responseCell);
-
-    }
-
-
-    // CLEAR CONTACT BUTTON
-
-    reset?.addEventListener("click", clearContact);
-
+    resetButton?.addEventListener("click", resetGrid);
 })();
